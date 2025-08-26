@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Sentiment Analysis</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>YouTube Comments Sentiment Analysis</h1>
+    <form method="POST">
+      <input type="text" name="video_url" placeholder="Enter YouTube Video URL" required>
+      <input type="number" name="max_comments" placeholder="Max Comments (default 100)">
+      <button type="submit">Analyze</button>
+    </form>
+
+    {% if sentiment_data %}
+    <h2>Results:</h2>
+    <p>Total Comments: {{ sentiment_data.total_comments }}</p>
+    <ul>
+      <li>Positive: {{ sentiment_data.sentiments.positive }}</li>
+      <li>Negative: {{ sentiment_data.sentiments.negative }}</li>
+      <li>Neutral: {{ sentiment_data.sentiments.neutral }}</li>
+    </ul>
+    <h3>Word Cloud</h3>
+    <img src="{{ url_for('static', filename='images/wordcloud.png') }}" alt="Word Cloud">
+    {% endif %}
+  </div>
+</body>
+</html>

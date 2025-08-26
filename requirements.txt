@@ -1,0 +1,5 @@
+Flask
+textblob
+wordcloud
+matplotlib
+google-api-python-client
